@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div style="text-align: center">
+      <!--form태그의 내부에는 요청을 보내는 url을 작성-->
+      <!--accountapp 내부의 urls.py에서 name='create'라는 라우트로 요청해라-->
+      <!--views.py에서 정한 form_class를 {{ form }}으로 사용하면, 귀찮게 html 코드
+      안 써도 됨-->
+      <form action="{% url 'accountapp:create' %}" method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" class="btn btn-primary">
+      </form>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

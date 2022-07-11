@@ -1,16 +1,15 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import HelloWorld
 
 
-def hello_world(request):
-    # return HttpResponse("Hello world!")
-
-    if request.method == "POST":
         #context는 데이터 꾸러미. text라는 이름이고 내용은 POST METHOD! 이다.
         #이것('text': 'POST_METHOD')을 html에서 보낼 것임.
 
@@ -24,6 +23,9 @@ def hello_world(request):
         # get 요청 방식으로 redirect 사옹하여 본 주소로 돌아가기
         # accountapp폴더의 urls.py에서 정한 app_name사용하고, urlpatterns리스트에서 path의 name으로 경로 갖고 오기
         # 이 때, reverse 함수를 사용하여 그 경로에 해당하는 경로를 다시 만든다
+def hello_world(request):
+    if request.method == "POST":
+
         temp = request.POST.get('hello_world_input')
 
         #DB에 데이터 저장
@@ -32,8 +34,20 @@ def hello_world(request):
         new_hello_world.save()
 
         return HttpResponseRedirect(reverse("accountapp:hello_world"))
-    
+
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
                       context={'hello_world_list': hello_world_list})
+
+############################################################################################################
+class AccountCreateView(CreateView):
+    # 1. 모델 선택
+    # 2. User 모델을 만드는 데 필요한 form
+    # 3. 계정만들기에 성공했을 때, 원하는 경로로 재연결
+    # reverse와의 차이는 사용되는 view의 차이. 함수형 view지, 클래스형 voew인지.
+    # 4. 회원가입 중 볼 화면, 즉 html
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/create.html'
