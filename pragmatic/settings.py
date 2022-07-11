@@ -14,6 +14,8 @@ import os
 import environ
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
@@ -139,6 +141,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [    #앱에 종속되지 않고 static files 관리
     BASE_DIR / "static",
 ]
+
+LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
