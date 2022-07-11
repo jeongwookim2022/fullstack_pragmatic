@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+<!--head-->
+{% include 'head.html' %}
+
+
 <body>
-dd
+<!--상-->
+    {% include 'header.html' %}
+
+
+<!--중    -->
+    {% block content %}
+
+    {% endblock %}
+
+
+<!--하    -->
+    {% include 'footer.html' %}
+
 </body>
 </html>
