@@ -23,6 +23,6 @@ urlpatterns = [
     #include: APP이름/urls.py 경로의 urls.py를 참조 가능.
     # 또한 각 APP 별로 각 urls.py에서 urlpattern들을 관리할 수 있게 됨.
     # accountapp내부의 urls.py를 포함하여 그 하위 디렉토리로 분기.
-    path('account/', include('accountapp.urls')),
+    path('accounts/', include('accountapp.urls')),
 
 ]
