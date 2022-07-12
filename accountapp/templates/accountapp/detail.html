@@ -24,6 +24,11 @@
            Change Information
          </p>
        </a>
+       <a href="{% url 'accountapp:delete' pk=user.pk %}">
+         <p>
+           Delete Account
+         </p>
+       </a>
       {% endif %}
 
     </div>
