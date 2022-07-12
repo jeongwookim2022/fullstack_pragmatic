@@ -53,8 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     #내가 startapp으로 만든 app 추가: account app
+     #내가 startapp으로 만든 app 추가: account app, bootstrap4
     'accountapp',
+    'bootstrap4',
+
 
 ]
 
