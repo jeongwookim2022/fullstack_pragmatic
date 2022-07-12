@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+      <p>
+        <!--언제 가입을 했는지 보여줌-->
+        <!--이렇게 (1)처럼 적으면 접속한 user의 정보가 보임.
+        하지만 다른 사람의 페이지에 들어가면 그 사람의 정보를 나오게 하고 싶음-->
+        <!--즉, 다른 사람의 내 페이지에 오더라도 내 정보를 볼 수 있음.-->
+        <!--(1) {{ user.date_joined }}-->
+        {{ target_user.date_joined }}
+
+      </p>
+      <h2 style="font-family: 'NanumSquareB">
+        {{ target_user.username }}
+      </h2>
+    </div>
+
+  </div>
+
+{% endblock %}
