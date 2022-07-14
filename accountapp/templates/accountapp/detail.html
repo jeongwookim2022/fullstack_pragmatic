@@ -16,11 +16,22 @@
         {{ target_user.date_joined }}
       </p>
 
+      <!--이미지 추가-->
+      <img src="{{ target_user.profile.image.url }}" alt=""
+           style="height: 8rem; width:8rem; border-radius: 10rem;
+           margin-bottom: 0.5rem;">
 
       {% if target_user.profile %}
-      <h2 style="font-family: 'NanumSquareB">
-        {{ target_user.profile.nickname }}
-      </h2>
+      <p style="margin-bottom: 0.1rem;">
+        <span style="font-family: 'NanumSquareB'; font-size: 150%">
+          {{ target_user.profile.nickname }}
+        </span>
+        <span>
+          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
+        </span>
+
+      </p>
+
       {% else %}
       <a href="{% url 'profileapp:create' %}">
         <h2 style="font-family: 'NanumSquareB">
@@ -29,18 +40,20 @@
       </a>
       {% endif %}
 
+      <!--대화명-->
+      <h5 style="margin-bottom: 2rem;">
+        {{ target_user.profile.message }}
+      </h5>
+
 
       {% if target_user == user %}
-       <a href="{% url 'accountapp:update' pk=user.pk %}">
-         <p>
-           Change Information
-         </p>
-       </a>
-       <a href="{% url 'accountapp:delete' pk=user.pk %}">
-         <p>
-           Delete Account
-         </p>
-       </a>
+       <h6 style="font-size: 90%">
+         <a href="{% url 'accountapp:update' pk=user.pk %}">Change Information</a>
+       </h6>
+
+       <h6 style="font-size: 90%">
+         <a href="{% url 'accountapp:delete' pk=user.pk %}">Delete Account</a>
+       </h6>
       {% endif %}
 
     </div>

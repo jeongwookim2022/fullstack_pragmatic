@@ -4,14 +4,12 @@
 
 {% block content %}
 
-  <div style="text-align: center; margin:4rem auto; max-width: auto">
+  <div style="text-align: center; margin:4rem auto; max-width: 500px;">
     <div class="mb-4">
-      <h4>
-          Change Information
-      </h4>
+      <h4>Change Profile</h4>
     </div>
     <div class="mb-4">
-      <form action="{% url 'accountapp:update' pk=target_user.pk %}" method="post">
+      <form action="{% url 'profileapp:update' pk=target_profile.pk %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% bootstrap_form form %}
           <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
