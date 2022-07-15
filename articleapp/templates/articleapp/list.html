@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!--JS의 MagicGrid 사용-->
+<!--순서대로 CSS, HTML, JS-->
+{% block content %}
+
+<!--.container img사용해서 container 내부의 img로
+가득 채울 수 있음-->
+<style>
+.container div {
+  width: 250px;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 1rem;
+}
+
+.container img {
+  width: 100%;
+  border-radius: 1rem;
+}
+</style>
+
+<!--TEST로 Lorem Picsum사용-->
+<!--여기의 url로 특정 width와 height로 요청을 보내면 random이미지 하나 줌-->
+    <div class="container">
+      <div class="item1">
+        <img src="https://picsum.photos/200/300" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/340" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/260" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/400" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/510" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/320" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/420" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/200" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/470" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/390" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/270" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/260" alt="">
+      </div>
+      <div class="item1">
+        <img src="https://picsum.photos/200/250" alt="">
+      </div>
+    </div>
+
+<!--static에서 js폴더 아래의 -->
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+
+{% endblock %}
+
+
