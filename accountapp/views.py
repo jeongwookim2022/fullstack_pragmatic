@@ -33,9 +33,9 @@ from accountapp.models import HelloWorld
 # - 리스트 내부에 decorator들을 넣어두고 method_decorator에 인자로
 # 해당하는 리스트를 넣으면, 리스트를 돌면서 모든 decorator를 확인하고 필요한 곳에 사용.
 has_owner_ship = [account_ownership_required,
-                  login_required]
+                  login_required
+                  ]
 
-#
 
 ##########################################################################################################
 
@@ -110,7 +110,7 @@ class AccountDetailView(DetailView):
 class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
-    form_class = AccountUpdateForm
+    form_class = AccountUpdateForm # 그대로 쓰는 이유는 ID 수정과 다르게 그냥 새로 만들어서 붙이면 되므로.
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
 

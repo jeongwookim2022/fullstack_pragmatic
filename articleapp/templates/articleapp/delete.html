@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <div style="text-align: center; margin:4rem auto; max-width: 500px">
+    <div class="mb-4">
+
+      <h3>
+          Are you sure you want to delete "{{ target_article.title }}" ?
+      </h3>
+      <img src="{{ target_article.image.url }}" alt=""
+           style="height: 13rem; width: 13rem; margin: 0.5rem;">
+
+    </div>
+    <div class="mb-4">
+      <form action="{% url 'articleapp:delete' pk=target_article.pk%}" method="post">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3">
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

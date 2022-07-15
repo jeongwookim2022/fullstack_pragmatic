@@ -6,7 +6,10 @@
         </div>
 <!--        2층: 네비게이션 바-->
         <div>
-            <span>nav1</span>
+            <a href="{% url 'articleapp:list' %}">
+                <span>Articles</span>
+            </a>
+
             <span>nav2</span>
             <span>nav3</span>
             <!--###로그인이 되어 있는 경우와 로그인 안 되어있는 경우###-->
@@ -31,8 +34,8 @@
                 <span>Logout</span>
             </a>
             {% endif %}
-
         </div>
+
     </div>
 
 
