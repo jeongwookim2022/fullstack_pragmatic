@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
@@ -14,7 +14,11 @@ class ProfileCreateView(CreateView):
     model = Profile
     form_class = ProfileCreationForm
     context_object_name = 'target_profile'
-    success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:hello_world')
+    #-->
+    # profile만들고 detail로 가는 게 더 자연스러움.
+    # 그런데, detail은 pk를 받아야 하기 때문에, 메소드 재정의 필요.
+    # def get_success_url(self)로 아래에서 재정의 한다.
     template_name = 'profileapp/create.html'
 
     # 서버에서 user 필드를 관리할 수 있도록 구현.
@@ -30,16 +34,27 @@ class ProfileCreateView(CreateView):
         temp_profile.save()
         return super().form_valid(form)
 
+    #메소드 재정의
+    # 설명
+    # (1) self.object는 위의 model = profiled에서 profile을 가리킴.
+    # 즉, profile의 user의 pk를 찾아서 넘김.
+    def get_success_url(self):
+        return reverse('accountapp:detail',
+                       kwargs={'pk': self.object.user.pk})
+
 
 #############################################################################
 
 @method_decorator(profile_ownership_required, 'get')
 @method_decorator(profile_ownership_required, 'post')
-
 class ProfileUpdateView(UpdateView):
     model = Profile
     form_class = ProfileCreationForm
     context_object_name = 'target_profile'
-    success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'profileapp/update.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail',
+                       kwargs={'pk': self.object.user.pk})
 

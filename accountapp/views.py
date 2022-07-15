@@ -79,6 +79,8 @@ class AccountCreateView(CreateView):
 
 ###############################################################################
 
+
+
 class AccountDetailView(DetailView):
     model = User
     #context_object_name으로 template(detail.html)에서 사용하는 user의 이름을 다르게
@@ -86,25 +88,6 @@ class AccountDetailView(DetailView):
     # 즉, 다른 사람의 내 페이지에 오더라도 내 정보를 볼 수 있음.
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
-
-    def get(self, *args, **kwargs):
-        #로그인이 되어 있다면, 변하는 게 없는 코드
-        if self.request.user.is_authenticated and \
-                self.get_object() == self.request.user:
-            return super().get(*args, **kwargs)
-
-        else:
-            return HttpResponseForbidden()
-
-    def post(self, *args, **kwargs):
-        #로그인이 되어 있다면, 변하는 게 없는 코드
-        if self.request.user.is_authenticated and \
-                self.get_object() == self.request.user:
-            return super().get(*args, **kwargs)
-
-        #Forbidden으로 금지된 곳에 접근했다고 알림
-        else:
-            return HttpResponseForbidden()
 
 ##################################################################################
 

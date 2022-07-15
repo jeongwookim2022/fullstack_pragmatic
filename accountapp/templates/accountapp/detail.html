@@ -12,38 +12,47 @@
         <!--즉, 다른 사람이 내 페이지에 왔을 때, 그 사람의 정보가 아닌 내 정보를
         볼 수 있도록 해야 함.-->
         <!--(1) {{ user.date_joined }}-->
-
-        {{ target_user.date_joined }}
+        <span style="font-weight: bold">With us since </span>
+        <span>{{ target_user.date_joined }}</span>
       </p>
 
+
+      {% if target_user.profile %}
       <!--이미지 추가-->
       <img src="{{ target_user.profile.image.url }}" alt=""
            style="height: 8rem; width:8rem; border-radius: 10rem;
            margin-bottom: 0.5rem;">
 
-      {% if target_user.profile %}
       <p style="margin-bottom: 0.1rem;">
         <span style="font-family: 'NanumSquareB'; font-size: 150%">
           {{ target_user.profile.nickname }}
         </span>
-        <span>
-          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
-        </span>
-
+               <!--Logout하면 edit 안 보이게-->
+              {% if target_user == user %}
+              <span>
+                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
+              </span>
+              {% endif %}
       </p>
-
-      {% else %}
-      <a href="{% url 'profileapp:create' %}">
-        <h2 style="font-family: 'NanumSquareB">
-          Create Profile
-        </h2>
-      </a>
-      {% endif %}
 
       <!--대화명-->
       <h5 style="margin-bottom: 2rem;">
         {{ target_user.profile.message }}
       </h5>
+
+      {% else %}
+          {% if target_user == user %}
+          <a href="{% url 'profileapp:create' %}">
+            <h2 style="font-family: 'NanumSquareB">
+              Create Profile
+            </h2>
+          </a>
+          {% else %}
+          <h2>
+            This user didn't create a Nickname!
+          </h2>
+          {% endif %}
+      {% endif %}
 
 
       {% if target_user == user %}
