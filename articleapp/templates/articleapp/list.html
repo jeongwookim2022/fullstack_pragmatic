@@ -26,56 +26,36 @@
 
 <!--TEST로 Lorem Picsum사용-->
 <!--여기의 url로 특정 width와 height로 요청을 보내면 random이미지 하나 줌-->
-    <div class="container">
-      <div class="item1">
-        <img src="https://picsum.photos/200/300" alt="">
+
+<!--수정하여-->
+<!--with에서 for문의 article을 card.html내부에서 쓸 article로 사용하겠다라는 말.-->
+
+    {% if article_list %}
+      <div class="container">
+        {% for article in article_list %}
+          <a href="{% url 'articleapp:detail' pk=article.pk %}">
+            {% include 'snippets/card.html' with article=article%}
+          </a>
+        {% endfor %}
       </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/340" alt="">
+
+      <!--static에서 js폴더 아래의 -->
+      <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    {% else %}
+      <div class="text-center">
+        <h1>No Articles Exist!</h1>
       </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/260" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/400" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/510" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/320" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/420" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/200" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/470" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/390" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/270" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/260" alt="">
-      </div>
-      <div class="item1">
-        <img src="https://picsum.photos/200/250" alt="">
-      </div>
-    </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj%}
+
 
     <div style="text-align: center;">
       <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
         Create Article
       </a>
     </div>
-
-<!--static에서 js폴더 아래의 -->
-    <script src="{% static 'js/magicgrid.js' %}"></script>
 
 {% endblock %}
 
