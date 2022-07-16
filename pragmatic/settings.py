@@ -54,12 +54,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      # 내가 startapp으로 만든 app 추가: account app, bootstrap4,
-     # prifileapp, articleapp
+     # prifileapp, articleapp, commentapp
     'accountapp',
     'bootstrap4',
     'profileapp',
     'articleapp',
-
+    'commentapp',
 
 ]
 

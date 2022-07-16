@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -20,6 +21,8 @@ from articleapp.models import Article
 
 #
 # - writer를 지정해줌
+from commentapp.forms import CommentCreationForm
+
 
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
@@ -39,9 +42,15 @@ class ArticleCreateView(CreateView):
 
 ################################################################################
 
+# FormMixin 클래스 상속
 
-class ArticleDetailView(DetailView):
+
+class ArticleDetailView(DetailView, FormMixin):
     model = Article
+    # 필요성: Detial view에서는 form이 아닌 object가 있음.
+    # 그런데 comment를 달 수 있는 form을 넣고 싶을 때 form이 없으므로 문제가 생긴다.
+    # 이 때, FormMixin 클래스를 상속 받는다.
+    form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 

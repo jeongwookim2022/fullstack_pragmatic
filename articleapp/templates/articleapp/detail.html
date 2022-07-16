@@ -28,21 +28,31 @@
         </p>
 
         {% if target_article.writer == user %}
-            <a href="{% url 'articleapp:update' pk=target_article.pk %}">
+        <div>
+            <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+               style="text-decoration:none;">
                 <h6 style="font-size: 95%"
                     class="btn btn-dark rounded-pill col-3">
                     Update Article
                 </h6>
             </a>
-            <a href="{% url 'articleapp:delete' pk=target_article.pk %}">
+            <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+               style="text-decoration:none;">
                 <h6 style="font-size: 95%"
                     class="btn btn-danger rounded-pill col-3">
                     Delete Article
                 </h6>
             </a>
+        </div>
         {% endif %}
 
         <hr>
+        <!--comment작성하는 html을 갖고와서 박기-->
+        <!--create.html내의 article을 현재의 target_article과 동기화를 시켜준다-->
+        <!--동기화가 되었으므로, create.html에서 동기화 된 article 변수를 사용할 수
+        있게 되므로 name='article_pk'라는 이름의 hidden 타입의 input의 value에 동기화 된
+        articled의 pk를 넣어 서버로 보낼 수 있게 됨-->
+        {% include 'commentapp/create.html' with article=target_article %}
 
     </div>
 
