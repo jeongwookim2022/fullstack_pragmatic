@@ -41,7 +41,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -143,7 +143,8 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [    #앱에 종속되지 않고 static files 관리
+#앱에 종속되지 않고 static files 관리
+STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 

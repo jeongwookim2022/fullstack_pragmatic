@@ -7,21 +7,33 @@
 
 <!--.container img사용해서 container 내부의 img로
 가득 채울 수 있음-->
+<!--.container a로 모바일 최적화를 진행.-->
 <style>
-.container div {
-  width: 250px;
-  background-color: antiquewhite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  border-radius: 1rem;
-}
+    .container {
+      padding: 0;
+      margin: 0, auto;
+    }
 
-.container img {
-  width: 100%;
-  border-radius: 1rem;
-}
+    .container a {
+      width: 45%;
+      max-width: 250px;
+      align-items: center;
+    }
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1rem;
+    }
+
+    .container img {
+      width: 100%;
+      border-radius: 1rem;
+    }
+
 </style>
 
 <!--TEST로 Lorem Picsum사용-->
@@ -34,7 +46,7 @@
       <div class="container">
         {% for article in article_list %}
           <a href="{% url 'articleapp:detail' pk=article.pk %}">
-            {% include 'snippets/card.html' with article=article%}
+            {% include 'snippets/card.html' with article=article %}
           </a>
         {% endfor %}
       </div>
@@ -52,7 +64,7 @@
 
 
     <div style="text-align: center;">
-      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
+      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
         Create Article
       </a>
     </div>

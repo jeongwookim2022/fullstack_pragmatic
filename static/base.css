@@ -3,7 +3,7 @@
 }
 
 .pragmatic_footer_button {
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .pragmatic_footer {
@@ -14,4 +14,13 @@
 .pragmatic_header {
     text-align: center;
     margin: 2rem 0;
+}
+
+
+
+@media screen and (max-width:600px) {
+    html {
+        font-size: 13px;
+
+    }
 }
