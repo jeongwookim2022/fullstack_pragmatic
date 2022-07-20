@@ -47,6 +47,12 @@
         {% endif %}
 
         <hr>
+        <!--for문에서 target_article에서 foregin key로 묶여 있는 comment들을
+        모두 갖고 오겠다는 것.-->
+        {% for comment in target_article.comment.all %}
+            {% include 'commentapp/detail.html' with comment=comment %}
+        {% endfor %}
+
         <!--comment작성하는 html을 갖고와서 박기-->
         <!--create.html내의 article을 현재의 target_article과 동기화를 시켜준다-->
         <!--동기화가 되었으므로, create.html에서 동기화 된 article 변수를 사용할 수
