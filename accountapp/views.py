@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
@@ -32,6 +33,8 @@ from accountapp.models import HelloWorld
 #Decorator 코드 줄이는설명
 # - 리스트 내부에 decorator들을 넣어두고 method_decorator에 인자로
 # 해당하는 리스트를 넣으면, 리스트를 돌면서 모든 decorator를 확인하고 필요한 곳에 사용.
+from articleapp.models import Article
+
 has_owner_ship = [account_ownership_required,
                   login_required
                   ]
@@ -81,13 +84,21 @@ class AccountCreateView(CreateView):
 
 
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     #context_object_name으로 template(detail.html)에서 사용하는 user의 이름을 다르게
     #설정할 수 있다// template에서 사용할 context 변수명을 지정
     # 즉, 다른 사람의 내 페이지에 오더라도 내 정보를 볼 수 있음.
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+    paginate_by = 7
+
+    # writer가 User인 article들을 필터링하여 object_list에 넣음.
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list, **kwargs)
+
 
 ##################################################################################
 

@@ -1,0 +1,66 @@
+
+{% load static %}
+
+<!--JS의 MagicGrid 사용-->
+<!--순서대로 CSS, HTML, JS-->
+
+
+<!--.container img사용해서 container 내부의 img로
+가득 채울 수 있음-->
+<!--.container a로 모바일 최적화를 진행.-->
+<style>
+
+    .container {
+      padding: 0;
+      margin: 0, auto;
+    }
+
+    .container a {
+      width: 45%;
+      max-width: 250px;
+      align-items: center;
+    }
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1rem;
+    }
+
+    .container img {
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+</style>
+
+    {% if article_list %}
+      <div class="container">
+        {% for article in article_list %}
+          <a href="{% url 'articleapp:detail' pk=article.pk %}">
+            {% include 'snippets/card.html' with article=article %}
+          </a>
+        {% endfor %}
+      </div>
+
+      <!--static에서 js폴더 아래의 -->
+      <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    {% else %}
+      <div class="text-center">
+        <h1>No Articles Exist!</h1>
+      </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj%}
+
+
+    <div style="text-align: center;">
+      <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+        Create Article
+      </a>
+    </div>
+
+

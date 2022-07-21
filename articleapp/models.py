@@ -14,10 +14,13 @@ from django.db import models
 # created_at
 # - 언제 만들어졌는지 확인 가능
 # - auto_created=True -> 자동으로 생성 시간이 저장됨
+from projectapp.models import Project
 
 
 class Article(models.Model):
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='article', null=True)
+    # 어느 project에 들어갈지// Projectapp과의 연결고리
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, related_name='article', null=True)
 
     title = models.CharField(max_length=200, null=True)
     image = models.ImageField(upload_to='article/', null=False)
@@ -25,6 +28,7 @@ class Article(models.Model):
 
     created_at = models.DateField(auto_created=True, null=True)
 
+    when = models.DateTimeField(auto_now_add=True)
 
 
 
