@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!--JS의 MagicGrid 사용-->
+<!--순서대로 CSS, HTML, JS-->
+{% block content %}
+
+<!--.container img사용해서 container 내부의 img로
+가득 채울 수 있음-->
+<!--.container a로 모바일 최적화를 진행.-->
+<style>
+
+    .container {
+      padding: 0;
+      margin: 0, auto;
+    }
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 1rem;
+    }
+
+    .container img {
+      width: 7rem;
+      height: 7rem;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+</style>
+
+<!--TEST로 Lorem Picsum사용-->
+<!--여기의 url로 특정 width와 height로 요청을 보내면 random이미지 하나 줌-->
+
+<!--수정하여-->
+<!--with에서 for문의 article을 card.html내부에서 쓸 article로 사용하겠다라는 말.-->
+
+    {% if project_list %}
+      <div class="container">
+        {% for project in project_list %}
+          <a href="{% url 'projectapp:detail' pk=project.pk %}">
+            {% include 'snippets/card_project.html' with project=project %}
+          </a>
+        {% endfor %}
+      </div>
+
+      <!--static에서 js폴더 아래의 -->
+      <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    {% else %}
+      <div class="text-center">
+        <h1>No Project Exist!</h1>
+      </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj%}
+
+
+    <div style="text-align: center;">
+      <a href="{% url 'projectapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+        Create Project
+      </a>
+    </div>
+
+{% endblock %}
+
+

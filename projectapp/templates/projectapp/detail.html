@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+
+        <!--이미지 추가-->
+      <img src="{{ target_project.image.url }}" alt=""
+           style="height: 12rem; width:12rem; border-radius: 20rem;
+           margin-bottom: 2rem; object-fit: cover;">
+
+      <div>
+        <h2 style="font-family: 'NanumSquareB'; font-size: 150%">
+          {{ target_project.title }}
+        </h2>
+
+        <h5 style="margin-bottom: 3rem;">
+          {{ target_project.description }}
+        </h5>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
