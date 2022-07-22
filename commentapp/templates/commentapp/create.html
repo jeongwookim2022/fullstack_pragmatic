@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div style="text-align: center; margin:4rem auto; max-width: 500px">
+    <div style="text-align: center; margin: 2rem auto; max-width: 500px">
         {% if user.is_authenticated %}
         <div class="mb-4">
           <h4>
@@ -30,7 +30,8 @@
       돌아 오게 하기 위해 "?next={{ request.path }}"를 작성해줌-->
 
         {% if user.is_authenticated %}
-          <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3;">
+          <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3;"
+                 style="margin: 2rem;">
         {% else %}
           <a href="{% url 'accountapp:login' %}?next={{ request.path }}"
              class="btn btn-dark rounded-pill col-6 mt-3">

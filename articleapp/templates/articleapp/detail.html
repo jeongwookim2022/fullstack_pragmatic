@@ -17,7 +17,9 @@
             <h3 style="font-family: NanumSquareB">
                 {{ target_article.writer.profile.nickname }}
             </h3>
-            <line style="font-size: 95%;">{{ target_article.when }}</line>
+            <line style="font-size: 95%;">
+                {{ target_article.when }}
+            </line>
 
 
         <hr>
@@ -25,9 +27,9 @@
 
         <img src="{{ target_article.image.url }}" alt=""
              style="width: 40%; height: 40%;
-                    border-radius: 2rem; margin: 0.5rem;">
+                    border-radius: 2rem; margin: 1rem;">
 
-        <p style="font-family: Nanum">
+        <p style="font-family: Nanum; margin: 1rem;">
             {{ target_article.content }}
         </p>
 
@@ -50,7 +52,7 @@
         </div>
         {% endif %}
 
-        <hr>
+        <hr style="margin-top: 2rem;">
         <!--for문에서 target_article에서 foregin key로 묶여 있는 comment들을
         모두 갖고 오겠다는 것.-->
         {% for comment in target_article.comment.all %}
