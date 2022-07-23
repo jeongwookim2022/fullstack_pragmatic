@@ -14,8 +14,10 @@
                 <span>Projects</span>
             </a>
 
-
-            <span class="pragmatic_header_nav">nav3</span>
+            <a href="{% url 'subscribeapp:list' %}" class="pragmatic_header_nav">
+                <span>Subscription</span>
+            </a>
+            
             <!--###로그인이 되어 있는 경우와 로그인 안 되어있는 경우###-->
             <!--1. get방식으로 next의 값을 넘김. 즉, 로그인 또는 로그아웃 후에 다시 넘어갈 경로를 넘김-->
             <!--2.(1). login이 되어 있다면 detail을 볼 수 있는 링크 설정-->

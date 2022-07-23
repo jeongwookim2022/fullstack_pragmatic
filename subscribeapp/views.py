@@ -4,10 +4,10 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import RedirectView
-
+from django.views.generic import RedirectView, ListView
 
 #로그인이 되어있을 때 구독이 가능하므로.
+from articleapp.models import Article
 from projectapp.models import Project
 from subscribeapp.models import Subscription
 
@@ -40,3 +40,23 @@ class SubscriptionView(RedirectView):
             Subscription(user=user, project=project).save()
 
         return super(SubscriptionView, self).get(request, *args, **kwargs)
+
+
+@method_decorator(login_required, 'get')
+class SubscriptionListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'subscribeapp/list.html'
+    paginate_by = 4
+
+    # 가져 오려는 article들의 조건들을 바꿀 수 있다
+    # values_list: 값들을 list화 시키는 것
+    # --> models.py의 project를 list화 시킨다는 말
+    # --> 구독한 모든 project들을 list로 담음.
+    # 이제 field lookup을 사용하여 article list를 만듦.
+    def get_queryset(self):
+        project_list = Subscription.objects.filter(user=self.request.user).values_list('project')
+        article_list = Article.objects.filter(project__in=project_list)
+
+        return article_list
+
