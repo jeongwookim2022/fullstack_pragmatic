@@ -27,13 +27,18 @@
 
         <img src="{{ target_article.image.url }}" alt=""
              style="width: 40%; height: 40%;
-                    border-radius: 2rem; margin: 1rem;">
+                    border-radius: 2rem; margin-top: 1.5rem;">
 
-        <p style="font-family: Nanum; margin: 1rem;">
-            {{ target_article.content }}
-        </p>
+        <div style="text-align: left; max-width: 350px;
+                    font-family: NanumSquareR; margin: 1.5rem auto">
 
-        {% if target_article.writer == user %}
+            <line style="font-family: Nanum; word-break: break-all;">
+                <!--WYSIWYG을 위해 수정: " | safe "-->
+                {{ target_article.content | safe }}
+            </line>
+
+            {% if target_article.writer == user %}
+        </div>
         <div>
             <a href="{% url 'articleapp:update' pk=target_article.pk %}"
                style="text-decoration:none;">
