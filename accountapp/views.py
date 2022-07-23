@@ -12,7 +12,7 @@ from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
-from accountapp.models import HelloWorld
+# from accountapp.models import HelloWorld
 
 ########################################################################################################
 #context는 데이터 꾸러미. text라는 이름이고 내용은 POST METHOD! 이다.
@@ -45,29 +45,34 @@ has_owner_ship = [account_ownership_required,
 # Decorator사용하여 1) login 여부 2) 안 했으면 login 창으로 보내는 것을 함
 # --> 즉, 주석처리한 if와 return문을 수행함.
 
-@login_required
-def hello_world(request):
-# Decorator 사용함
-# if request.user.is_authenticated:
-    if request.method == "POST":
+###################################################################
+# 주석처리 hello_world
+# @login_required
+# def hello_world(request):
+# # Decorator 사용함
+# # if request.user.is_authenticated:
+#     if request.method == "POST":
+#
+#         temp = request.POST.get('hello_world_input')
+#
+#         #DB에 데이터 저장
+#         new_hello_world = HelloWorld()
+#         new_hello_world.text = temp
+#         new_hello_world.save()
+#
+#         return HttpResponseRedirect(reverse("accountapp:hello_world"))
+#
+#     else:
+#         hello_world_list = HelloWorld.objects.all()
+#         return render(request, 'accountapp/hello_world.html',
+#                       context={'hello_world_list': hello_world_list})
 
-        temp = request.POST.get('hello_world_input')
 
-        #DB에 데이터 저장
-        new_hello_world = HelloWorld()
-        new_hello_world.text = temp
-        new_hello_world.save()
-
-        return HttpResponseRedirect(reverse("accountapp:hello_world"))
-
-    else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
 # Decorator 사용함
 # else:
 #     return HttpResponseRedirect(reverse('accountapp:login'))
 ############################################################################################################
+
 
 class AccountCreateView(CreateView):
     # 1. 모델 선택

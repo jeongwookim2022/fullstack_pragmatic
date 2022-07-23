@@ -30,7 +30,11 @@
                <!--Logout하면 edit 안 보이게-->
               {% if target_user == user %}
               <span>
-                <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">edit</a>
+                <a class="material-icons"
+                   style="box-shadow: 0 0 4px #aaa; font-size: 120%;"
+                   href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                        edit
+                </a>
               </span>
               {% endif %}
       </p>
@@ -56,13 +60,21 @@
 
 
       {% if target_user == user %}
-       <h6 style="font-size: 90%">
-         <a href="{% url 'accountapp:update' pk=user.pk %}">Change Information</a>
-       </h6>
 
-       <h6 style="font-size: 90%">
-         <a href="{% url 'accountapp:delete' pk=user.pk %}">Delete Account</a>
-       </h6>
+         <a class="material-icons"
+            style="box-shadow: 0 0 4px #aaa; font-size: 120%;"
+            href="{% url 'accountapp:update' pk=user.pk %}">
+             settings
+         </a>
+
+
+
+         <a class="material-icons"
+            style="box-shadow: 0 0 4px #faa; font-size: 120%;"
+            href="{% url 'accountapp:delete' pk=user.pk %}">
+             cancel
+         </a>
+
       {% endif %}
 
     </div>
