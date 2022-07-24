@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from django import forms
 
 from articleapp.models import Article
@@ -9,11 +9,9 @@ class ArticleCreationForm(ModelForm):
     # 커스터마이징
     # WYSIWYG을 위해 templates에서 html 수정 필요: " | safe "
     content = forms.CharField(widget=forms.Textarea(attrs={'class': 'editable',
-                                                           'style': 'height: auto; text-align: left;'}))
-
+                                                           'style': 'height: 10rem; text-align: left;'}))
 
     project = forms.ModelChoiceField(queryset=Project.objects.all(), required=False)
-
 
     class Meta:
         model = Article
