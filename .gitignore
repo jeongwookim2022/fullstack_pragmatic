@@ -76,7 +76,7 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-#개발환경 추적 X
+#개발환경 추적 X  
 # - media/ --> 미디어 폴더 내부에 올리는 파일들이 쌓임
 venv/
 
