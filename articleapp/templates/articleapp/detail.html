@@ -12,19 +12,23 @@
         <h3 style="font-family: NanumSquareL">
             By
         </h3>
+
+        {% if target_article.writer.profile %}
         <h3 style="font-family: NanumSquareB">
             {{ target_article.writer.profile.nickname }}
         </h3>
-
-
-
-       <!--작성자 사진 추가-->
-       <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
+        <!--작성자 사진 및 프로필 링크 추가-->
+        <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
            <img src="{{ target_article.writer.profile.image.url }}" alt=""
                 style="height: 12rem; width:12rem; border-radius: 10rem;
                        margin-bottom: 1.5rem; object-fit: cover;">
-       </a>
+        </a>
 
+        {% else %}
+        <h3 style="font-family: NanumSquareB">
+            This user didn't create the profile!
+        </h3>
+        {% endif %}
 
 
         <hr>
