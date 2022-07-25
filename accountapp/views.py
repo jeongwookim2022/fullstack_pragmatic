@@ -82,7 +82,7 @@ class AccountCreateView(CreateView):
     # 4. 회원가입 중 볼 화면, 즉 html
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/create.html'
 
 ###############################################################################
@@ -127,7 +127,7 @@ class AccountUpdateView(UpdateView):
     model = User
     context_object_name = 'target_user'
     form_class = AccountUpdateForm # 그대로 쓰는 이유는 ID 수정과 다르게 그냥 새로 만들어서 붙이면 되므로.
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('home')
     template_name = 'accountapp/update.html'
 
     #1. update창에서 logout하더라도, 나 포함 다른 users의 pw를
