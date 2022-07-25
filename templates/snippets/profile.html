@@ -1,0 +1,40 @@
+{% if target_user.profile %}
+      <!--이미지 추가-->
+      <img src="{{ target_user.profile.image.url }}" alt=""
+           style="height: 12rem; width:12rem; border-radius: 10rem;
+                  margin-bottom: 0.5rem; object-fit: cover;">
+
+      <p style="margin-bottom: 0.1rem;">
+        <span style="font-family: 'NanumSquareB'; font-size: 150%">
+          {{ target_user.profile.nickname }}
+        </span>
+               <!--Logout하면 edit 안 보이게-->
+              {% if target_user == user %}
+              <span>
+                <a class="material-icons"
+                   style="box-shadow: 0 0 4px #aaa; font-size: 120%;"
+                   href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                        edit
+                </a>
+              </span>
+              {% endif %}
+      </p>
+
+      <!--대화명-->
+      <h5 style="margin-bottom: 2rem;">
+        {{ target_user.profile.message }}
+      </h5>
+
+      {% else %}
+          {% if target_user == user %}
+          <a href="{% url 'profileapp:create' %}">
+            <h2 style="font-family: 'NanumSquareB">
+              Create Profile
+            </h2>
+          </a>
+          {% else %}
+          <h2>
+            This user didn't create a Nickname!
+          </h2>
+          {% endif %}
+      {% endif %}

@@ -9,35 +9,43 @@
         <h1>
             {{ target_article.title }}
         </h1>
-
         <h3 style="font-family: NanumSquareL">
             By
         </h3>
+        <h3 style="font-family: NanumSquareB">
+            {{ target_article.writer.profile.nickname }}
+        </h3>
 
-            <h3 style="font-family: NanumSquareB">
-                {{ target_article.writer.profile.nickname }}
-            </h3>
-            <line style="font-size: 95%;">
-                {{ target_article.when }}
-            </line>
+
+
+       <!--작성자 사진 추가-->
+       <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
+           <img src="{{ target_article.writer.profile.image.url }}" alt=""
+                style="height: 12rem; width:12rem; border-radius: 10rem;
+                       margin-bottom: 1.5rem; object-fit: cover;">
+       </a>
+
 
 
         <hr>
 
 
         <img src="{{ target_article.image.url }}" alt=""
-             style="width: 40%; height: 40%;
+             style="width: 40%; height: 40%; margin-bottom: 0.5rem;
                     border-radius: 2rem; margin-top: 1.5rem;">
+        <h5 style="font-size: 95%;">
+            {{ target_article.when }}
+        </h5>
 
         <div style="text-align: left; max-width: 350px;
                     font-family: NanumSquareR; margin: 1.5rem auto">
 
-            <line style="font-family: Nanum; word-break: break-all;">
-                <!--WYSIWYG을 위해 수정: " | safe "-->
-                {{ target_article.content | safe }}
-            </line>
+        <line style="font-family: Nanum; word-break: break-all;">
+            <!--WYSIWYG을 위해 수정: " | safe "-->
+            {{ target_article.content | safe }}
+        </line>
 
-            {% if target_article.writer == user %}
+        {% if target_article.writer == user %}
         </div>
         <div>
             <a href="{% url 'articleapp:update' pk=target_article.pk %}"
