@@ -1,5 +1,6 @@
 from .base import *
 
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
@@ -31,7 +32,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'django',
         'PASSWORD': 'password1234',
-        'HOST': 'mariadb',
+        'HOST': 'mariadb', #mariadb container 이름
         'PORT': '3306',
     }
 }
