@@ -47,7 +47,7 @@ DATABASES = {
         'USER': 'django',
         # 'PASSWORD': 'password1234',
         'PASSWORD': read_secret('MYSQL_PASSWORD'),
-        'HOST': 'mariadb', #mariadb container 이름
+        'HOST': 'mariadb', # mariadb container 이름
         'PORT': '3306',
     }
 }
