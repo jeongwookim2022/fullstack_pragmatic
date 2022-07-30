@@ -1,5 +1,14 @@
 from .base import *
 
+def read_secret(secret_name):
+    file = open('/run/secrets/' + secret_name)
+    secret = file.read()
+    # secret_key 갖고 오면 양 옆에 불필요한 공백이 있음.
+    secret = secret.rstrip().lstrip()
+    file.close()
+
+    return secret
+
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -21,14 +30,6 @@ environ.Env.read_env(
 # (1)
 # SECRET_KEY = env('SECRET_KEY')
 # (2)
-def read_secret(secret_name):
-    file = open('/run/secrets/' + secret_name)
-    secret = file.read()
-    secret = secret.rstrip().lstrip() # secret_key 갖고 오면 양 옆에 불필요한 공백이 있음.
-    file.close()
-
-    return secret
-
 SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
