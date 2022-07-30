@@ -4,7 +4,7 @@ def read_secret(secret_name):
     file = open('/run/secrets/' + secret_name)
     secret = file.read()
     # secret_key 갖고 오면 양 옆에 불필요한 공백이 있음.
-    # secret = secret.rstrip().lstrip()
+    secret = secret.rstrip().lstrip()
     file.close()
 
     return secret
@@ -47,7 +47,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'django',
         # 'PASSWORD': 'password1234',
-        'PASSWORD': read_secret('MYSQL_PASSWORD'),
+        'PASSWORD': read_secret("MYSQL_PASSWORD"),
         'HOST': 'mariadb', # mariadb container 이름
         'PORT': '3306',
     }
