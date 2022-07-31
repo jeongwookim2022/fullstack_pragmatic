@@ -14,9 +14,11 @@
         </h3>
 
         {% if target_article.writer.profile %}
-        <h3 style="font-family: NanumSquareB">
-            {{ target_article.writer.profile.nickname }}
-        </h3>
+        <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
+            <h3 style="font-family: NanumSquareB">
+                {{ target_article.writer.profile.nickname }}
+            </h3>
+        </a>
         <!--작성자 사진 및 프로필 링크 추가-->
         <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
            <img src="{{ target_article.writer.profile.image.url }}" alt=""
