@@ -6,6 +6,7 @@ from django.db import models
 
 
 class Project(models.Model):
+    # wirter 추가. 작성자 link 추가하기 위해.
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='project', null=True)
 
     image = models.ImageField(upload_to='project/', null=False)
