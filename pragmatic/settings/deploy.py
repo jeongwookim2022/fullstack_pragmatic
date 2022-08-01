@@ -52,3 +52,5 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+CSRF_TRUSTED_ORIGINS = ['https://www.kimland.shop/']
