@@ -19,7 +19,7 @@ WORKDIR /home/
 
 
 #의미 없음
-RUN echo "teeeest222222"
+RUN echo "teeeest2222aaaadddadf22"
 
 # github에 올린 소스 코드를 갖고 온다.
 # --> 그러면 갖고 온 소스 코드가 Image 안에 들어가게 된다.
