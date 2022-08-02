@@ -25,16 +25,25 @@
           {{ target_project.description }}
         </h3>
 
-        {% if target_project.writer %}
+        {% if target_project.writer.profile %}
         <div style="margin-top: 5rem;">
-          <line>Created by</line>
+          <h6 style="margin-bottom: 0;">Created by</h6>
           <a href="{% url 'accountapp:detail' pk=target_project.writer.pk %}">
-              <h5 style="font-family: NanumSquareB; margin-bottom: 1rem;">
+              <line style="font-family: NanumSquareB; font-size: 1.2rem;">
                   {{ target_project.writer.profile.nickname }}
-              </h5>
+              </line>
           </a>
-          {% endif %}
         </div>
+        {% else %}
+        <div style="margin-top: 5rem;">
+          <h6 style="margin-bottom: 0;">Created by</h6>
+          <a href="{% url 'accountapp:detail' pk=target_project.writer.pk %}">
+              <line style="font-family: NanumSquareB; font-size: 1.2rem;">
+                An User with No-Profile
+              </line>
+          </a>
+        </div>
+        {% endif %}
 
 
 
@@ -43,7 +52,7 @@
             {% if not subscription %}
               <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{ target_project.pk }}"
                  style="font-family: 'NanumSquareEB'; width: 40%; height: 40%; margin-bottom: 2rem;"
-                 class="btn btn-primary rounded-pill px-4">
+                 class="btn btn-primary rounded-pill px-4 mt-2">
                  Follow
               </a>
             {% else %}
