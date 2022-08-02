@@ -92,4 +92,4 @@ media/
 
 nginx.conf
 
-staticfiles/admin/
+staticfiles/admin
