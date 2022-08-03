@@ -30,5 +30,10 @@ class Article(models.Model):
 
     when = models.DateTimeField(auto_now_add=True)
 
+    # Like System
+    like = models.IntegerField(default=0)
+    # DisLike System
+    dislike = models.IntegerField(default=0)
+
 
 

@@ -93,3 +93,7 @@ media/
 nginx.conf
 
 staticfiles/admin
+
+Dockerfile_for_private_repo
+
+pragmatic.git

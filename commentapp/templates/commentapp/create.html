@@ -4,16 +4,16 @@
 
 {% block content %}
 
-    <div style="text-align: center; margin: 2rem auto; max-width: 500px">
+    <div style="text-align: center; margin: 3rem auto; max-width: 500px">
         {% if user.is_authenticated %}
-        <div class="mb-4">
+        <div class="mb-2">
           <h4>
               Comment Create
           </h4>
         </div>
 <!--        <div class="mb-4">-->
       <!--요청을 보내는 곳을 commentapp:create로 수정-->
-        <form action="{% url 'commentapp:create' %}" method="post">
+        <form action="{% url 'commentapp:create' %}" style="font-size: 1.2rem;" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
 

@@ -6,9 +6,7 @@
   <div>
     <div style="text-align: center; max-width: 700px;
                 font-family: NanumSquareR; margin: 4rem auto">
-        <h1>
-            {{ target_article.title }}
-        </h1>
+
         <h3 style="font-family: NanumSquareL">
             By
         </h3>
@@ -23,12 +21,12 @@
         <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
            <img src="{{ target_article.writer.profile.image.url }}" alt=""
                 style="height: 12rem; width:12rem; border-radius: 10rem;
-                       margin-bottom: 1.5rem; object-fit: cover;">
+                       margin-bottom: 3rem; object-fit: cover;">
         </a>
 
         {% else %}
         <a href="{% url 'accountapp:detail' pk=target_article.writer.pk %}">
-            <h3 style="font-family: NanumSquareB">
+            <h3 style="font-family: NanumSquareB; margin-bottom: 3rem;">
                 This user didn't create the profile!
             </h3>
         </a>
@@ -38,24 +36,52 @@
         <hr>
 
 
-        <img src="{{ target_article.image.url }}" alt=""
-             style="width: 40%; height: 40%; margin-bottom: 0.5rem;
-                    border-radius: 2rem; margin-top: 1.5rem;">
+        <h1 style="margin-top: 3rem;">
+            {{ target_article.title }}
+        </h1>
         <h5 style="font-size: 95%;">
             {{ target_article.when }}
         </h5>
+        <img src="{{ target_article.image.url }}" alt=""
+             style="width: 40%; height: 40%; margin-bottom: 1rem;
+                    border-radius: 2rem; margin-top: 0rem;">
 
-        <div style="text-align: left; max-width: 350px;
+
+        <!--좋아요 및 싫어요 추가-->
+        <div style="height: 2rem;">
+            <a href="{% url 'likeapp:article_like' pk=target_article.pk %}">
+                <i style="vertical-align: middle; font-size: 1.5rem; color: #0080ff;"
+                   class="material-icons">
+                    thumb_up
+                </i>
+            </a>
+            <span style="vertical-align: middle; font-size: 1.16rem;">
+                {{ target_article.like }}
+            </span>
+             &nbsp
+            <!--싫어요-->
+            <a href="{% url 'dislikeapp:article_dislike' pk=target_article.pk %}">
+                <i style="vertical-align: middle; font-size: 1.5rem; color: #f07;"
+                   class="material-icons">
+                    thumb_down
+                </i>
+            </a>
+            <span style="vertical-align: middle; font-size: 1.16rem;">
+                {{ target_article.dislike }}
+            </span>
+        </div>
+
+
+        <div style="text-align: left; padding: 0 5rem; max-width: 350px;
                     font-family: NanumSquareR; margin: 1.5rem auto">
-
-        <line style="font-family: Nanum; word-break: break-all;">
-            <!--WYSIWYG을 위해 수정: " | safe "-->
-            {{ target_article.content | safe }}
-        </line>
+            <line style="font-family: Nanum; word-break: break-all;">
+                <!--WYSIWYG을 위해 수정: " | safe "-->
+                {{ target_article.content | safe }}
+            </line>
+        </div>
 
         {% if target_article.writer == user %}
-        </div>
-        <div>
+        <div style="margin: 2rem;">
             <a href="{% url 'articleapp:update' pk=target_article.pk %}"
                style="text-decoration:none;">
                 <h6 style="font-size: 95%"
@@ -73,7 +99,7 @@
         </div>
         {% endif %}
 
-        <hr style="margin-top: 2rem;">
+        <hr style="margin-top: 3rem;">
         <!--for문에서 target_article에서 foregin key로 묶여 있는 comment들을
         모두 갖고 오겠다는 것.-->
         {% for comment in target_article.comment.all %}
