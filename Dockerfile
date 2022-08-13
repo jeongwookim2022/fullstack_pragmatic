@@ -19,7 +19,7 @@ WORKDIR /home/
 
 
 #의미 없음
-RUN echo "teeeadfaaaeadf2211111"
+RUN echo "teeeadfaaaeadf221112222111"
 
 # github에 올린 소스 코드를 갖고 온다.
 # --> 그러면 갖고 온 소스 코드가 Image 안에 들어가게 된다.
@@ -40,9 +40,10 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 ##################################################################
 
-
+#################################################################
 RUN pip install mysqlclient
-
+#################################################################
+RUN pip install django-allauth
 
 ##################################################################
 # 이렇게 작성하면 Image 내에서 "SECRET_KEY~~"를 가진 .env 파일이 생성됨.
