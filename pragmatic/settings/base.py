@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
      # 내가 startapp으로 만든 app 추가: account app, bootstrap4,
      # prifileapp, articleapp, commentapp, projectapp, subscribeapp
     'accountapp',
@@ -46,7 +47,13 @@ INSTALLED_APPS = [
     'subscribeapp',
     'likeapp',
     'dislikeapp',
-
+    # allauth for SOCIAL LOGIN USING GOOGLE API
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # provider
+    # - companies that provide SOCIAL LOGIN
+    'allauth.socialaccount.providers.google',
 
 ]
 
@@ -164,3 +171,16 @@ MEDIA_URL = '/media/'
 # 미디어 파일을 서버에 올렸을 때, 어느 경로에 지정이 될 것인지
 # 그 경로의 ROOT를 정함
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#############################################################################
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+
+    # 'allauth' specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
