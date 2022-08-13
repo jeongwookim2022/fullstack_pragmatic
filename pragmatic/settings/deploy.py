@@ -67,4 +67,6 @@ CORS_REPLACE_HTTPS_REFERER = True
 CORS_ORIGIN_WHITELIST = (
     'https://www.kimland.shop/'
 )
+
 #########################################################
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
